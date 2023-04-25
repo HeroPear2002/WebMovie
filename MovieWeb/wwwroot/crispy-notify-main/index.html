@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/app.css" />
+    <link rel="stylesheet" href="styles/toast.css" />
+    <script src="script.js" type="module"></script>
+    <title>Crispy Notify</title>
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/images/apple-touch-icon.png"
+    />
+    <meta property="og:title" content="Crispy Notify" />
+    <meta
+      property="og:description"
+      content="Simple yet beautiful, customizable, noisy (or maybe not?) toast 🍞 notification web app (potentially a library)."
+    />
+
+    <meta
+      property="og:image"
+      content="https://crispy-notify.vercel.app/assets/images/og-image.png"
+    />
+    <meta property="og:url" content="https://crispy-notify.vercel.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:article:author" content="Vijay S Kumar" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="navbar flex-center">
+        <img src="assets/images/logo.png" alt="" />
+        <div class="nav_items display-flex justify-space-between align-center">
+          <a href="/#playground">Playground</a>
+          <a href="/#docs">Documentation</a>
+        </div>
+      </div>
+
+      <div class="app display-flex justify-center">
+        <form class="playground_form">
+          <h3>The playground:</h3>
+          <br />
+          <div class="toast_config">
+            <div class="toast_title">
+              <label for="title"> 📌 Title </label>
+              <input
+                type="text"
+                name="title"
+                id="title"
+                class="w-100"
+                value="Yay! My first 🍞"
+                required
+              />
+            </div>
+
+            <div class="toast_message">
+              <label for="toast_message"> 💬 Message </label>
+              <textarea
+                name="message"
+                id="toast_message"
+                class="w-100"
+                cols="30"
+                rows="5"
+                required
+              >
+This is awesome!!!</textarea
+              >
+            </div>
+
+            <div class="toast_delay">
+              <label for="toast_delay"> ⏭️ Auto close in (seconds) </label>
+              <input
+                type="number"
+                id="toast_delay"
+                name="autoClose"
+                class="w-100"
+                value="5"
+              />
+            </div>
+          </div>
+
+          <br /><br />
+          <div class="position_selectors">
+            <label for="toast-position"> 👉 Position</label>
+            <select name="position" id="toast-position">
+              <option value="top-center">Top Center</option>
+              <option value="top-left">Top Left</option>
+              <option value="top-right" selected>Top Right</option>
+              <option value="bottom-center">Bottom Center</option>
+              <option value="bottom-left">Bottom Left</option>
+              <option value="bottom-right">Bottom Right</option>
+            </select>
+          </div>
+
+          <br />
+          <div class="type_selectors">
+            <label for="toast-type">🔍 Type</label>
+            <select name="type" id="toast-type">
+              <option value="info">Info</option>
+              <option value="warning">Warning</option>
+              <option value="error">Error</option>
+              <option value="success">Success</option>
+              <option value="default" selected>default</option>
+            </select>
+          </div>
+
+          <br />
+          <div>
+            <input type="checkbox" name="darkMode" id="disable_auto_close" />
+            <span>Dark theme 🌙</span>
+          </div>
+
+          <br />
+          <div>
+            <input
+              type="checkbox"
+              name="disableAutoClose"
+              id="disable_auto_close"
+            />
+            <span>Disable auto close 🚫 ⏭️ </span>
+          </div>
+
+          <br />
+          <div>
+            <input
+              type="checkbox"
+              name="playNotificationSound"
+              id="play_toast_sounds"
+            />
+            <span>Play notification sound ▶️ 🔊 </span>
+          </div>
+
+          <br />
+          <div>
+            <input
+              type="checkbox"
+              name="showProgressBar"
+              id="hide_progress_bar"
+            />
+            <span>Show progress bar 👁️‍🗨️ 📈</span>
+          </div>
+
+          <br />
+          <div>
+            <input
+              type="checkbox"
+              name="canCloseOnClick"
+              id="close_on_click"
+              checked
+            />
+            <span>Close on click 👆 ❌</span>
+          </div>
+
+          <br />
+          <div>
+            <input
+              type="checkbox"
+              name="pauseOnFocusLoss"
+              id="pause_on_lose_focus"
+              checked
+            />
+            <span>Pause toast when the window loses focus 💭 ⏸</span>
+          </div>
+
+          <br />
+          <div>
+            <input
+              type="checkbox"
+              name="pauseOnHover"
+              id="pause_on_hover"
+              checked
+            />
+            <span>Pause delay on hover 🖱️ ⏸</span>
+          </div>
+
+          <br /><br />
+          <input type="submit" value="Toast 🍞 Me Up!" class="submit_btn" />
+        </form>
+
+        <br />
+        <div class="w-100">
+          <h3>Default Toast Object:</h3>
+
+          <div class="code-block">
+            <span class="line"> new Toast({</span>
+            <span class="line p-20"> autoClose: 5000, // in ms.</span>
+            <span class="line p-20"> canCloseOnClick: true,</span>
+            <span class="line p-20"> darkMode: false,</span>
+            <span class="line p-20"> onClose: () => {},</span>
+            <span class="line p-20"> position: "top-right",</span>
+            <span class="line p-20"> pauseOnHover: true,</span>
+            <span class="line p-20"> pauseOnFocusLoss: true,</span>
+            <span class="line p-20"> playNotificationSound: false,</span>
+            <span class="line p-20"> showProgressBar: true,</span>
+            <span class="line p-20"> toastContent: {</span>
+            <span class="line p-40">message: "Yay! My first 🍞",</span>
+            <span class="line p-40"> title: "This is awesome!!!",</span>
+            <span class="line p-40"> type: "default",</span>
+            <span class="line p-20"> },</span>
+            <span class="line"> });</span>
+          </div>
+
+          <div style="margin: 1.25rem 0">
+            Detailed
+            <mark>documentation</mark>
+            📚 will be uploaded soon 🔜...
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MovieWeb.Models.TaiKhoan>
+
+@{
+    ViewData["Title"] = "DanhSachUser";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    var datetime = DateTime.Now.ToString();
+    
+}
+<h1>List User</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenTaiKhoan)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoDt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Anh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateUpdate)
+            </th>
+            
+            <th>Chuc Nang</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenTaiKhoan)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoDt)
+            </td>
+            <td>
+                    <img style="width:50px;height:50px" src="@item.Anh?v=@datetime" alt="">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateUpdate)
+            </td>
+            
+            <td>
+                <a asp-action="KhoaTK" asp-route-userCode="@item.MaTaiKhoan">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

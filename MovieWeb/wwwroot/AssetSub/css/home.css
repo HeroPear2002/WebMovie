@@ -1,0 +1,43 @@
+﻿.dialog {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background-color: #2b2b31;
+    top: calc(50% - 207px);
+    right: 0;
+    bottom: 0;
+    padding-left: 200px;
+    padding-bottom: 20px;
+    height: fit-content;
+}
+
+.rowSearch {
+    display: flex;
+    height: 50px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #333;
+}
+
+    .rowSearch:hover .lblSearch {
+        color: #ff5860;
+    }
+
+.imgSearch {
+    height: 100%;
+    width: 50px;
+    margin: 5px 0 5px 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 2px;
+}
+
+.lblSearch {
+    width: 100%;
+    margin: auto 5px;
+    text-align: left, center;
+    color: rgba(255,255,255,0.7);
+    padding-left: 20px;
+}

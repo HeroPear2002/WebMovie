@@ -1,0 +1,494 @@
+﻿@model MovieWeb.ViewModels.InfoFilm
+@{
+    ViewData["Title"] = "InfoFilm";
+    Layout = "~/Views/Shared/LayoutCommon.cshtml";
+}
+<link href="~/css/stylesheet.css?v=1" rel="stylesheet" />
+<div class="confirm">
+    <h1>Thông báo</h1>
+    <p>
+        bạn có muốn  <em>xóa</em> không
+        <button id="cancel-delete">Cancel</button>
+        <button id="delete" autofocus>Xóa</button>
+</div>
+<main>
+    <!-- movie-details-area -->
+    <section class="movie-details-area" user-code="@ViewBag.ID" film-code="@Model.film.MaPhim" data-background="/asset/img/bg/movie_details_bg.jpg">
+        <div class="container">
+            <div class="row align-items-center position-relative">
+                <div class="col-xl-3 col-lg-4">
+                    <div class="movie-details-img">
+                        <img style="width:300px;height:400px" src="@Model.film.Anh" alt="">
+                        <a  class="popup-video"><img src="~/asset/img/images/play_icon.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-8">
+                    <div class="movie-details-content">
+                        
+                        <span class="like like-movie" id-movie="@Model.film.MaPhim">5</span><i like="" class="fas fa-thumbs-up vote-like"></i>
+                        <h2>@Model.film.TenPhim</h2>
+                        <div class="banner-meta">
+                            <ul>
+                                <li class="quality">
+                                    <span>@Model.film.GioiHanDoTuoi</span>
+                                    <span>hd</span>
+                                </li>
+                                <li class="category">
+                                    <a class="category-item"></a>
+                                  
+                                </li>
+                                <li class="release-time">
+                                    <span><i class="far fa-calendar-alt"></i>@Model.film.NgayKhoiChieu.Value.Year</span>
+                                    <span><i class="far fa-clock view-point"></i> </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consecetur adipiscing elseddo eiusmod tempor.There are many
+                            variations of passages of lorem
+                            Ipsum available, but the majority have suffered alteration in some injected humour.
+                        </p>
+                        <div class="movie-details-prime">
+                            <ul>
+                                <li class="share"><a href="#"><i class="fas fa-share-alt"></i> Share</a></li>
+                                <li class="streaming">
+                                    <h6>Prime Video</h6>
+                                    <span>Streaming Channels</span>
+                                </li>
+                                <li class="watch"><a href="https://www.youtube.com/watch?v=R2gbPxeNk2E" class="btn popup-video"><i class="fas fa-play"></i> Watch Now</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-details-btn">
+                    <a href="~/asset/img/poster/movie_details_img.jpg" class="download-btn" download="">Download <img src="fonts/download.svg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- movie-details-area-end -->
+    <!-- episode-area -->
+    <section class="episode-area episode-bg" data-background="/asset/img/bg/episode_bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="movie-episode-wrap">
+                        <div class="episode-top-wrap">
+                            <div class="section-title">
+                                <span class="sub-title">ONLINE STREAMING</span>
+                                <h2 class="title">Watch Full Episode</h2>
+                            </div>
+                            <div class="total-views-count">
+                                <p class="view-movie">2.7 million <i class="far fa-eye"></i></p>
+                            </div>
+                        </div>
+                        <div class="episode-watch-wrap">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                   
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <ul>
+                                                @foreach(var item in Model.episodeList)
+                                                {
+                                                <li><a href="@item.Duonglink" onclick="updateView(@item.MaTapPhim)" class="popup-video">
+                                                    <i class="fas fa-play">
+
+                                                    </i> Episode @item.SoTapPhim 
+                                                    </a> <span class="duration"><i class="far fa-clock">
+
+                                                    </i> @item.LuotXem</span></li>
+                                                    
+                                                }
+                                               
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    
+                    <div class="contact-form-wrap">
+                        <div class="widget-title mb-50">
+                            <h5 class="title">Chat AI</h5>
+                        </div>
+                        <div class="contact-form">
+                            <form  style="">
+                               
+                                <div class="option-func">
+                                    <textarea name="message" class="question"></textarea>
+                                    <input type="button" class="btn send-question" value="Send Question">
+                                    <textarea name="message" class="answer"></textarea>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <section data-background="/asset/img/bg/episode_bg.jpg" style="padding:10px 120px">
+        <div class="blog-comment mb-80">
+                                <div class="widget-title mb-45">
+                <h5 class="title">
+                    Comment's (<span class="num-comment">
+                                        1
+                                    </span>)</h5>
+                                </div>
+                                <ul class="lst-cmt">
+                                    
+                                   
+                                </ul>
+                            </div>
+        <div class="contact-form-wrap" >
+            <div class="widget-title mb-50">
+                <h5 class="title">Post a Comment</h5>
+            </div>
+            <div class="contact-form">
+                <form action="#" style="display:flex;justify-content:space-around;">
+                    <div class="comment-avatar-img">
+                        <img src="@ViewBag.Anh" alt="img">
+                    </div>
+                    <div class="option-func">
+                        <textarea name="message" class="text-msg"></textarea>
+                        <input type="button" class="btn comment-submit" value="Send Message">
+                        <input type="button" class="btn comment-edit" value="Edit ">
+                        <input type="button" class="btn comment-cancel" value="Cancel">
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- episode-area-end -->
+    <!-- tv-series-area -->
+     <!-- tv-series-area-end -->
+    <!-- newsletter-area -->
+   
+    <!-- newsletter-area-end -->
+
+</main><script src="~/js/jquery-3.6.0.min.js"></script>
+<script>
+    function Load() {
+        loadComment();
+        LoadVote();
+    }
+    function LoadVote(){
+        url1 = 'https://localhost:7103/api/Vote?maphim=' + $('.movie-details-area').attr('film-code');
+        $.ajax({
+            type: 'GET',
+            url: url1,
+            dataType: 'json',
+            success: function (data) {
+                $('.like-movie').text(data['result'])
+            },
+            Error: function (ex) {
+                alter(ex.responseText)
+            }
+        })
+        if ($('.movie-details-area').attr('user-code')!='0'){
+            url1 = 'https://localhost:7103/api/Vote/user?maphim=' + $('.movie-details-area').attr('film-code')
+                + '&&user=' + $('.movie-details-area').attr('user-code');
+            $.ajax({
+                type: 'GET',
+                url: url1,
+                dataType: 'json',
+                success: function (data) {
+
+                    if (data['result'] == 1) {
+                        $('.vote-like').addClass('yellow-color')
+                    }
+                },
+                Error: function (ex) {
+                    alter(ex.responseText)
+                }
+            })
+        }
+        
+    }
+    $('.vote-like').click(function(){
+        if($('.movie-details-area').attr('user-code') == '0') {
+            $message.warning('Đăng nhập để thực hiện chức năng này', {
+                // auto dismiss after 2 seconds
+                // 0 means always show the toast message
+                duration: 2,
+                // show a close button inside the toast message
+                closable: false,
+                // determine whether to allow html content
+                dangerUseHtml: false,
+                // callback
+                onClose: () => console.log('close'),
+
+            });
+            
+            return;
+        }
+        let data1={}
+        if ($(this).hasClass('yellow-color')){
+            data1['result']='0';
+        }
+        else data1['result'] = '1'
+        let urlPUT = 'https://localhost:7103/api/Vote?maphim=' + $('.movie-details-area').attr('film-code') +
+        '&&user=' + $('.movie-details-area').attr('user-code');
+        $.ajax({
+            type: 'PUT',
+            url: urlPUT,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            crossDomain: true,
+            contentType: "application/json;charset=utf-8",
+            dataType: 'json',
+            data: JSON.stringify(data1),
+            success: function (data) {
+                if (data['result']==0){
+                    $('.vote-like').removeClass('yellow-color')
+                }
+                else $('.vote-like').addClass('yellow-color')
+                LoadVote()
+            },
+            Error: function (ex) {
+                alter(ex.responseText)
+            }
+        })
+    })
+    function updateView(matap){
+        let urlPUT = 'https://localhost:7103/api/ViewMovie?matapphim=' + matap;
+        $.ajax({
+            type: 'PUT',
+            url: urlPUT,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            crossDomain: true,
+            contentType: "application/json;charset=utf-8",
+            dataType: 'json',
+            
+            success: function (data) {
+                
+            },
+            Error: function (ex) {
+                alter(ex.responseText)
+            }
+        })
+    }
+    $('.send-question').click(()=>{
+        urlGet = 'https://localhost:7103/api/ChatGPT_API?query=' + $('.question').val()
+        $.ajax({
+            type: 'GET',
+            url: urlGet,
+            dataType: 'json',
+            success: function (data) {
+                $('.answer').val(data['result'])
+
+            },
+            Error: function (ex) {
+                alter(ex.responseText)
+            }
+        })
+    }) 
+    function loadComment(){
+        
+            str = '';
+        var url1 = 'https://localhost:7103/api/v1/commentapi?maphim=' + $('.movie-details-area').attr('film-code');
+            $.ajax({
+                type: 'GET',
+                url: url1,
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data, function (key, val) {
+                        str += `<li>
+                                            <div class="single-comment">
+                                                <div class="comment-avatar-img">
+                                                    <img src="${val.anh1}" alt="img">
+                                                </div>
+                                                <div class="comment-text">
+                                                    <div class="comment-avatar-info">
+                                                            <h5>${val.tenTaiKhoan} <span class="comment-date">${val.thoiGianCmt}</span></h5>`
+                        if (val.maTaiKhoan == $('.movie-details-area').attr('user-code')){
+                        str += ` <div><a onclick="editCMT(${val.maComment},'${val.noiDung}')" class="comment-reply-link edit-cmt">edit </a>
+                                <a onclick="deleteCMT(${val.maComment})" class="comment-reply-link delete-cmt">remove </a>
+                                    </div>`
+                        
+                        }
+                           str+=`                             
+                                                    </div>
+                                                            <p class="comment-content" id-cmt="${val.MaComment}">${val.noiDung}</p>
+                                                </div>
+                                            </div>
+                                        </li>`
+                    })
+                    $('.lst-cmt').html(str)
+                },
+                Error: function (ex) {
+                    alter(ex.responseText)
+                }
+        
+        })
+        url2 = 'https://localhost:7103/api/v1/commentapi/numcmt?maphim=' + $('.movie-details-area').attr('film-code');
+        $.ajax({
+            type: 'GET',
+            url: url2,
+            dataType: 'json',
+            success: function (data) {
+                $('.num-comment').text(data['result'])
+            },
+            Error: function (ex) {
+                alter(ex.responseText)
+            }
+        })
+        url3 = 'https://localhost:7103/api/ViewMovie?maphim=' + $('.movie-details-area').attr('film-code');
+        $.ajax({
+            type: 'GET',
+            url: url3,
+            dataType: 'json',
+            success: function (data) {
+                $('.view-movie').text(data['result'])
+            },
+            Error: function (ex) {
+                alter(ex.responseText)
+            }
+        })
+    }
+    $('.comment-submit').click(() => {
+        SendData()
+    })
+    function SendData(){
+        if ($('.movie-details-area').attr('user-code') == '0') {
+            $message.warning('Đăng nhập để thực hiện chức năng này', {
+                // auto dismiss after 2 seconds
+                // 0 means always show the toast message
+                duration: 2,
+                // show a close button inside the toast message
+                closable: false,
+                // determine whether to allow html content
+                dangerUseHtml: false,
+                // callback
+                onClose: () => console.log('close'),
+
+            });
+            return;
+        }
+        data1 = {}
+        data1['MaPhim'] = $('.movie-details-area').attr('film-code');
+        data1['MaTaiKhoan'] = $('.movie-details-area').attr('user-code');
+        data1['NoiDung'] = $('.text-msg').val()
+        let date = new Date($.now()),
+            year = date.getFullYear().toString(),
+            month = (date.getMonth() + 1).toString().padStart(2, '0'),
+            day = date.getDate().toString().padStart(2, '0');
+        data1['ThoiGianCmt'] = `${year}-${month}-${day}T00:00:00`;
+        $.ajax({
+            type: 'POST',
+            url: 'https://localhost:7103/api/v1/commentapi',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            crossDomain: true,
+            contentType: "application/json;charset=utf-8",
+            dataType: 'json',
+            data: JSON.stringify(data1),
+            success: function (data) {
+                loadComment()
+                $('.text-msg').val('');
+
+            },
+            Error: function (ex) {
+                alter(ex.responseText)
+            }
+        })
+    }
+    function editCMT(id,content) {
+		$('.comment-edit').show()
+        $('.comment-cancel').show()
+		$('.comment-edit').attr('id-edit', id)
+		$('.comment-submit').hide()
+		$('.text-msg').attr("value-id-cmt", id)
+        $('.text-msg').val(content);
+
+        $('.text-msg').focus()
+  }
+    function updateCMT() {
+        let id = $('.comment-edit').attr('id-edit')
+        let urlPUT = 'https://localhost:7103/api/v1/commentapi?cmtCode='+id;
+        data1 = {}
+        data1['result'] = $('.text-msg').val();
+        
+        $.ajax({
+            type: 'PUT',
+            url: urlPUT,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            crossDomain: true,
+            contentType: "application/json;charset=utf-8",
+            dataType: 'json',
+            data: JSON.stringify(data1),
+            success: function (data) {
+                loadComment()
+                $('.comment-edit').hide()
+                $('.comment-submit').show()
+                $('.comment-cancel').hide()
+                $('.text-msg').val('');
+            },
+            Error: function (ex) {
+                alter(ex.responseText)
+            }
+        })
+    }
+  $('.comment-edit').click(() => {
+		updateCMT()
+	})
+    $('.comment-cancel').click(()=>{
+         $('.comment-edit').hide()
+        $('.comment-submit').show()
+        $('.comment-cancel').hide()
+        $('.text-msg').val('');
+    })
+    $('.comment-edit').hide()
+    $('.comment-cancel').hide()
+    //
+    $('.confirm').hide()
+    var idDel
+    function deleteCMT(id) {
+		idDel = id
+		$('.confirm').show()
+
+	}
+	$('#delete').click(() => {
+        let urlDelete = 'https://localhost:7103/api/v1/commentapi?cmtCode=' + idDel
+
+		deletecomment(urlDelete)
+	})
+	$('#cancel-delete').click(() => {
+		$('.confirm').hide()
+	})
+    function deletecomment(urlDelete) {
+
+      $.ajax({
+          type: 'DELETE',
+          url: urlDelete ,
+          headers: {
+          "Content-Type": "application/json"
+          },
+          crossDomain: true,
+          contentType: "application/json;charset=utf-8",
+          dataType: 'json',
+
+          success: function (data) {
+				$('.confirm').hide()
+				loadComment()
+
+          },
+          Error: function (ex) {
+              alter(ex.responseText)
+          }
+      })
+  }
+    Load()
+</script>

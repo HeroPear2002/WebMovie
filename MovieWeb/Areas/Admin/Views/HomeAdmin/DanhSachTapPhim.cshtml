@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MovieWeb.Models.Episode>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "DanhSachTapPhim";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h1>DanhSachTapPhim : @ViewBag.TenPhim</h1>
+
+<p>
+    <a asp-action="ThemTapPhimMoi" asp-route-maphim="@ViewBag.MaPhim">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SoTapPhim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duonglink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LuotXem)
+            </th>
+            
+            <th>Chuc Nang</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoTapPhim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duonglink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LuotXem)
+            </td>
+            <td>
+                 <a asp-action="SuaTapPhim" asp-route-maTapPhim="@item.MaTapPhim">Edit</a> |
+                 <a asp-action="XoaTapPhim" asp-route-maTapPhim="@item.MaTapPhim">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

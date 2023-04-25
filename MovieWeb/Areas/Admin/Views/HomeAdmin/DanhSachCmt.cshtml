@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewData["Title"] = "DanhSachCmt";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+@model MovieWeb.Areas.Admin.ViewModel.ViewComment;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<h2>Phim :@ViewBag.TenPhim</h2>
+
+<h3>Danh sach binh luan tich cuc  </h3>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Noi dung
+            </th>
+            <th>
+                Thoi gian
+            </th>
+            <th>
+                Ma phim
+            </th>
+            <th>
+                Ma tai khoan
+            </th>
+            <th>Xoa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.tichCuc)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoiDung)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThoiGianCmt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaPhim)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaTaiKhoan)
+                </td>
+                <td>
+                    <a asp-action="XoaComment" asp-route-maComment="@item.MaComment">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Danh sach binh luan tieu cuc </h3>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Noi dung
+            </th>
+            <th>
+                Thoi gian
+            </th>
+            <th>
+                Ma phim
+            </th>
+            <th>
+                Ma tai khoan
+            </th>
+            <th>Xoa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.tieuCuc)
+        {
+                <tr>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.NoiDung)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.ThoiGianCmt)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.MaPhim)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.MaTaiKhoan)
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.MaComment">Delete</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
+<style>
+        td {
+            white-space: normal !important;
+            max-width:200px;
+        width: 200px !important;
+        }
+</style>
+

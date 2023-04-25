@@ -1,0 +1,16 @@
+﻿@using MovieWeb.Models;
+@model IEnumerable<TPhim>
+<a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
+    <span class="menu-title">Menu bình luận các phim</span>
+    <i class="menu-arrow"></i>
+    <i class="mdi mdi-medical-bag menu-icon"></i>
+</a>
+<div class="collapse" id="general-pages">
+    <ul class="nav flex-column sub-menu">
+        @foreach (var item in Model)
+        {
+            <li class="nav-item"> <a id="display-product" class="nav-link" asp-area="admin" asp-controller="Home" asp-action="MenuCacPhim" asp-route-maphim="@item.MaPhim">@item.TenPhim</a></li>
+        }
+    </ul>
+</div>
+

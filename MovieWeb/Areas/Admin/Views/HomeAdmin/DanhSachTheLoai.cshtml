@@ -1,0 +1,88 @@
+﻿@using MovieWeb.Models;
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<TPhim>
+@{
+    ViewData["Title"] = "DanhSachPhim";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h1>DanhSachPhim</h1>
+@{
+    var datetime = DateTime.Now.ToString();
+    int i = 0;
+    string @cls = "table-success";
+}
+
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<p>
+    <a asp-action="ThemPhimMoi">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                TenPhim
+            </th>
+            <th>
+                Anh
+            </th>
+            <th>
+                NgayKhoiChieu
+            </th>
+
+            <th>
+                QuocGia
+            </th>
+            <th>
+                GioiHanDoTuoi
+            </th>
+
+            <th>Chuc Nang</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            i = i + 1;
+
+            if (i % 2 == 0)
+            {
+                cls = "table-primary";
+            }
+            else
+            {
+                cls = "table-success";
+            }
+            <tr class="@cls">
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenPhim)
+                </td>
+                <td>
+                    <img style="width:50px;height:50px" src="@item.Anh?v=@datetime" alt="">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayKhoiChieu)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuocGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioiHanDoTuoi)
+                </td>
+                    
+                <td>
+                    <a asp-action="SuaPhim" asp-route-maPhim="@item.MaPhim">Edit</a> |
+                    <a asp-action="DanhSachTapPhim" asp-route-maphim="@item.MaPhim">Details</a> |
+                    <a asp-action="XoaPhim" asp-route-maPhim="@item.MaPhim">Delete</a> |
+                    <a asp-action="DanhSachCmt" asp-route-maPhim="@item.MaPhim">Comment</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager(Model,page=>Url.Action("DanhSachPhim",new {page=page}),new X.PagedList.Web.Common.PagedListRenderOptions(){
+    LiElementClasses = new List<String> {"page-item"},
+    PageClasses = new List<String> {"page-link"}
+})

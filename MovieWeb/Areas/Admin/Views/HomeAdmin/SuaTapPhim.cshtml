@@ -1,0 +1,44 @@
+﻿@model MovieWeb.Models.Episode
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "SuaTapPhim";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h1>SuaTapPhim</h1>
+
+<h4>Episode</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SuaTapPhim">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MaTapPhim" />
+            <div class="form-group">
+                <input type="hidden" asp-for="MaPhim" class="form-control" value="@ViewBag.MaPhim">
+            </div>
+            <div class="form-group">
+                <label asp-for="SoTapPhim" class="control-label"></label>
+                <input asp-for="SoTapPhim" class="form-control" />
+                <span asp-validation-for="SoTapPhim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duonglink" class="control-label"></label>
+                <input asp-for="Duonglink" class="form-control" />
+                <span asp-validation-for="Duonglink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="LuotXem" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
